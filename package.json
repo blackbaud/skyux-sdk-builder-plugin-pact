@@ -17,6 +17,7 @@
   },
   "peerDependencies": {
     "@skyux-sdk/builder": "^4.0.0-rc.2",
+    "@skyux-sdk/pact": "^4.0.0-rc.0",
     "karma": "^4.0.0"
   },
   "devDependencies": {

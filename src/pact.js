@@ -1,20 +1,20 @@
-const http = require('http');
-const httpProxy = require('http-proxy');
-const logger = require('@blackbaud/skyux-logger');
-const portfinder = require('portfinder');
-const url = require('url');
-
-const skyPagesConfigUtil = require('@skyux-sdk/builder/config/sky-pages/sky-pages.config');
-const tsLinter = require('@skyux-sdk/builder/utils/ts-linter');
-
-const karmaUtils = require('./karma-utils');
-const pactServers = require('./pact-servers');
-
 /**
  * Spawns the skyux pact command.
  * @name pact
  */
 function pact(command, argv) {
+
+  const http = require('http');
+  const httpProxy = require('http-proxy');
+  const logger = require('@blackbaud/skyux-logger');
+  const portfinder = require('portfinder');
+  const url = require('url');
+
+  const skyPagesConfigUtil = require('@skyux-sdk/builder/config/sky-pages/sky-pages.config');
+  const tsLinter = require('@skyux-sdk/builder/cli/utils/ts-linter');
+
+  const karmaUtils = require('./karma-utils');
+  const pactServers = require('./pact-servers');
 
   const skyPagesConfig = skyPagesConfigUtil.getSkyPagesConfig(command);
 
@@ -36,20 +36,20 @@ function pact(command, argv) {
 
     // saving pact server information so it can carry over into karma config
     skyPagesConfig.skyux.pacts.forEach((instance, index) => {
+      const config = skyPagesConfig.skyux.pacts[index];
       pactServers.savePactServer(
-        skyPagesConfig.skyux.pacts[index].provider,
-        skyPagesConfig.skyux.pacts[index].host || 'localhost',
-        skyPagesConfig.skyux.pacts[index].port || ports[index]
+        config.provider,
+        config.host || 'localhost',
+        config.port || ports[index]
       );
     });
 
     const proxy = httpProxy.createProxyServer({});
 
     // proxy requests to pact server to contain actual host url rather than the karma url
-    proxy.on('proxyReq', req => req.setHeader(
-      'Origin',
-      (skyPagesConfig.skyux.host || {}).url || 'https://host.nxt.blackbaud.com'
-    ));
+    const url = (skyPagesConfig.skyux.host || {}).url || 'https://host.nxt.blackbaud.com';
+    console.log('URL:', url);
+    proxy.on('proxyReq', req => req.setHeader('Origin', url));
 
     // revert CORS header value back to karma url so that requests are successful
     proxy.on('proxyRes', (res, req) => {

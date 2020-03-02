@@ -1,0 +1,24 @@
+{
+  "name": "@skyux-sdk/builder-plugin-pact",
+  "version": "0.0.1",
+  "description": "SKY UX Builder plugin for Pact testing.",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "nyc jasmine",
+    "eslint": "eslint index.js lib",
+    "lint": "npm run eslint",
+    "test": "npm run lint && npm run coverage"
+  },
+  "author": "Blackbaud, Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackbaud/skyux-sdk-builder-plugin-pact.git"
+  },
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "jasmine": "3.5.0",
+    "mock-require": "3.0.3",
+    "nyc": "15.0.0"
+  }
+}

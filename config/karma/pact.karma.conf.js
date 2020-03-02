@@ -9,13 +9,14 @@ const path = require('path');
  */
 function getConfig(config) {
 
+  const argv = minimist(process.argv.slice(2));
+
   require(`@skyux-sdk/builder/config/karma/${ argv.watch ? 'watch' : 'test' }.karma.conf`)(config);
 
   const skyPagesConfigUtil = require('@skyux-sdk/builder/config/sky-pages/sky-pages.config');
   const webpackConfig = require('@skyux-sdk/builder/config/webpack/test.webpack.config');
   const pactServers = require('../../src/pact-servers');
 
-  const argv = minimist(process.argv.slice(2));
   const skyPagesConfig = skyPagesConfigUtil.getSkyPagesConfig(argv._[0]);
 
   skyPagesConfig.runtime.pactConfig = {

@@ -5,7 +5,19 @@ function preload(content, resourcePath) {
 
   let modified = content.toString();
 
-  const imports = `import { SkyPactAuthTokenProvider, SkyPactService } from '@skyux-sdk/pact';`;
+  const imports = [];
+
+  if (modified.indexOf('SkyPactService') === -1) {
+    imports.push(`import { SkyPactAuthTokenProvider, SkyPactService } from '@skyux-sdk/pact';`);
+  }
+
+  if (modified.indexOf('SkyAppConfig') === -1) {
+    imports.push(`import { SkyAppConfig } from '@skyux/config';`);
+  }
+
+  if (modified.indexOf('SkyAuthTokenProvider') === -1) {
+    imports.push(`import { SkyAuthTokenProvider } from '@skyux/http';`);
+  }
 
   const providerConfigs = [
     `{
@@ -45,7 +57,7 @@ ${providerConfigs.join(',\n')}${providersSourceEnd === ']' ? '\n  ' : ','}`
   );
   modified = modified.replace(ngModuleMatches[0], ngModuleSource);
 
-  modified = `${imports}\n` + modified;
+  modified = `${imports.join('\n')}\n` + modified;
 
   return modified;
 }

@@ -11,7 +11,7 @@ function getConfig(config) {
 
   require(`@skyux-sdk/builder/config/karma/${ argv.watch ? 'watch' : 'test' }.karma.conf`)(config);
 
-  const skyPagesConfigUtil = require('@skyux-sdk/builder/config/sky-pages/sky-pages-config');
+  const skyPagesConfigUtil = require('@skyux-sdk/builder/config/sky-pages/sky-pages.config');
   const webpackConfig = require('@skyux-sdk/builder/config/webpack/test.webpack.config');
   const pactServers = require('../../src/pact-servers');
 

@@ -3,14 +3,15 @@ function preload(content, resourcePath) {
   return content;
 }
 
-async function runCommand(command) {
-  if (command === 'pact') {
-    console.log('Running Pact command.');
-    await setTimeout(() => {}, 1000);
-    return true;
+async function runCommand(command, argv) {
+  if (command !== 'pact') {
+    return false;
   }
 
-  return false;
+  const pact = require('./src/pact');
+  await pact(command, argv);
+
+  return true;
 }
 
 module.exports = {

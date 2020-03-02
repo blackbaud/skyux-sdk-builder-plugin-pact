@@ -16,11 +16,13 @@
     "url": "git+https://github.com/blackbaud/skyux-sdk-builder-plugin-pact.git"
   },
   "peerDependencies": {
-    "@skyux-sdk/builder": "^4.0.0-rc.2"
+    "@skyux-sdk/builder": "^4.0.0-rc.2",
+    "karma": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "6.8.0",
     "jasmine": "3.5.0",
+    "karma": "4.4.1",
     "mock-require": "3.0.3",
     "nyc": "15.0.0"
   },
@@ -29,7 +31,6 @@
     "@pact-foundation/karma-pact": "2.3.1",
     "glob": "7.1.6",
     "http-proxy": "1.18.0",
-    "karma": "4.4.1",
     "portfinder": "1.0.25",
     "url": "0.11.0"
   }

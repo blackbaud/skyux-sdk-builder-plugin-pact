@@ -1,19 +1,20 @@
+const logger = require('@blackbaud/skyux-logger');
+const http = require('http');
+const httpProxy = require('http-proxy');
+const portfinder = require('portfinder');
+const url = require('url');
+
 /**
  * Spawns the skyux pact command.
  * @name pact
  */
 function pact(command, argv) {
 
-  const http = require('http');
-  const httpProxy = require('http-proxy');
-  const logger = require('@blackbaud/skyux-logger');
-  const portfinder = require('portfinder');
-  const url = require('url');
-
-  const skyPagesConfigUtil = require('@skyux-sdk/builder/config/sky-pages/sky-pages.config');
   const tsLinter = require('@skyux-sdk/builder/cli/utils/ts-linter');
 
-  const karmaUtils = require('./karma-utils');
+  const skyPagesConfigUtil = require('../utils/sky-pages-config');
+
+  const karmaServer = require('./karma-server');
   const pactServers = require('./pact-servers');
 
   const skyPagesConfig = skyPagesConfigUtil.getSkyPagesConfig(command);
@@ -47,9 +48,8 @@ function pact(command, argv) {
     const proxy = httpProxy.createProxyServer({});
 
     // proxy requests to pact server to contain actual host url rather than the karma url
-    const url = (skyPagesConfig.skyux.host || {}).url || 'https://host.nxt.blackbaud.com';
-    console.log('URL:', url);
-    proxy.on('proxyReq', req => req.setHeader('Origin', url));
+    const originUrl = (skyPagesConfig.skyux.host || {}).url || 'https://host.nxt.blackbaud.com';
+    proxy.on('proxyReq', req => req.setHeader('Origin', originUrl));
 
     // revert CORS header value back to karma url so that requests are successful
     proxy.on('proxyRes', (res, req) => {
@@ -69,7 +69,7 @@ function pact(command, argv) {
         });
       } else {
         logger.error(
-          `Pact proxy path is invalid.  Expected format is base/provider-name/api-path.`
+          `Pact proxy path is invalid. Expected format is base/provider-name/api-path.`
         );
       }
     });
@@ -83,7 +83,7 @@ function pact(command, argv) {
     // for use by consuming app
     pactServers.savePactProxyServer(`http://localhost:${ports[ports.length - 1]}`);
 
-    karmaUtils.run(command, argv, 'src/app/**/*.pact-spec.ts')
+    karmaServer.run(command, argv, 'src/app/**/*.pact-spec.ts')
       .then(exitCode => {
         const tsLinterExitCode = tsLinter.lintSync(argv).exitCode;
         process.exit(exitCode || tsLinterExitCode);

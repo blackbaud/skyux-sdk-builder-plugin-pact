@@ -38,31 +38,26 @@ function getConfig(config) {
     logger.error('No pact entry in configuration!');
   }
 
-  const newPreprocessors = {};
-  Object.keys(config.preprocessors).find((fileName) => {
-    if (fileName.indexOf('spec-bundle.js') > -1) {
+  // Replace the spec-bundle so that it picks up `*.pact-spec.ts` files.
+  const pactPattern = path.resolve(__dirname, '../../utils/spec-bundle.js');
 
-      const oldPreprocessors = config.preprocessors[fileName];
-      const newFileName = path.resolve(__dirname, '../../utils/spec-bundle.js');
-
-      newPreprocessors[newFileName] = oldPreprocessors;
+  for (const pattern in config.preprocessors) {
+    if (pattern.indexOf('spec-bundle.js') > -1) {
+      config.preprocessors[pactPattern] = config.preprocessors[pattern];
+      delete config.preprocessors[pattern];
 
       config.files.forEach(file => {
-        if (file.pattern === fileName) {
-          file.pattern = newFileName;
+        if (file.pattern === pattern) {
+          file.pattern = pactPattern;
         }
       });
-
-    } else {
-      newPreprocessors[fileName] = config.preprocessors[fileName];
     }
-  });
+  }
 
-  delete config.preprocessors;
+  // Pact tests don't require code coverage.
+  delete config.coverageIstanbulReporter;
 
   config.set({
-    preprocessors: newPreprocessors,
-    coverageIstanbulReporter: undefined,
     reporters: ['mocha'],
     frameworks: config.frameworks.concat('pact'),
     files: config.files.concat(path.resolve(

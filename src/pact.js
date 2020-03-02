@@ -11,7 +11,6 @@ const url = require('url');
 function pact(command, argv) {
 
   const tsLinter = require('@skyux-sdk/builder/cli/utils/ts-linter');
-
   const skyPagesConfigUtil = require('@skyux-sdk/builder/config/sky-pages/sky-pages.config');
 
   const karmaServer = require('./karma-server');

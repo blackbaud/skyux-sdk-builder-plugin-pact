@@ -32,4 +32,5 @@ module.exports = function (content, providerConfigs) {
 
   content = content.replace(ngModuleMatches[0], ngModuleSource);
 
+  return content;
 };

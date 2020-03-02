@@ -28,6 +28,7 @@ function setupProviders(content) {
   ];
 
   content = addModuleProviders(content, providerConfigs);
+
   content = `${imports.join('\n')}\n${content}`;
 
   return content;

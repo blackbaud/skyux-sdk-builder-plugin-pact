@@ -8,7 +8,8 @@
     "coverage": "nyc jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "eslint": "eslint index.js lib",
     "lint": "npm run eslint",
-    "test": "npm run lint && npm run coverage"
+    "test": "npm run lint && npm run coverage",
+    "watch": "nodemon --exec nyc jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
   "author": "Blackbaud, Inc.",
   "license": "MIT",
@@ -35,8 +36,10 @@
   "devDependencies": {
     "eslint": "6.8.0",
     "jasmine": "3.5.0",
+    "jasmine-spec-reporter": "4.2.1",
     "karma": "4.4.1",
     "mock-require": "3.0.3",
+    "nodemon": "2.0.2",
     "nyc": "15.0.0"
   }
 }

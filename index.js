@@ -1,11 +1,8 @@
+const loader = require('./lib/loader');
+const plugin = require('./lib/plugin');
+
 function preload(content, resourcePath) {
-  if (resourcePath.indexOf('app-extras.module.ts') === -1) {
-    return content;
-  }
-
-  const pactProviders = require('./lib/pact-providers');
-
-  return pactProviders.setupProviders(content.toString());
+  return loader.preload(content, resourcePath);
 }
 
 async function runCommand(command, argv) {
@@ -13,9 +10,7 @@ async function runCommand(command, argv) {
     return false;
   }
 
-  const pact = require('./lib/pact');
-
-  await pact(command, argv);
+  await plugin.pact(command, argv);
 
   return true;
 }

@@ -3,7 +3,8 @@ function preload(content, resourcePath) {
     return content;
   }
 
-  const pactProviders = require('./src/pact-providers');
+  const pactProviders = require('./lib/pact-providers');
+
   return pactProviders.setupProviders(content.toString());
 }
 
@@ -12,7 +13,8 @@ async function runCommand(command, argv) {
     return false;
   }
 
-  const pact = require('./src/pact');
+  const pact = require('./lib/pact');
+
   await pact(command, argv);
 
   return true;

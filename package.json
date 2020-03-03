@@ -4,7 +4,8 @@
   "description": "SKY UX Builder plugin for Pact testing.",
   "main": "index.js",
   "scripts": {
-    "coverage": "nyc jasmine",
+    "build": "node ./scripts/prepare-package.js",
+    "coverage": "nyc jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "eslint": "eslint index.js lib",
     "lint": "npm run eslint",
     "test": "npm run lint && npm run coverage"

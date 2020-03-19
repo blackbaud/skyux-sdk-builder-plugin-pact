@@ -1,0 +1,45 @@
+{
+  "name": "@skyux-sdk/builder-plugin-pact",
+  "version": "0.0.1",
+  "description": "SKY UX Builder plugin for Pact testing.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./scripts/prepare-package.js",
+    "coverage": "nyc jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "eslint": "eslint index.js lib",
+    "lint": "npm run eslint",
+    "test": "npm run lint && npm run coverage",
+    "watch": "nodemon --exec nyc jasmine JASMINE_CONFIG_PATH=jasmine.json"
+  },
+  "author": "Blackbaud, Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackbaud/skyux-sdk-builder-plugin-pact.git"
+  },
+  "peerDependencies": {
+    "@pact-foundation/pact-web": "^9.8.0",
+    "@pact-foundation/pact": "^9.8.0",
+    "@skyux-sdk/builder": "^4.0.0-rc.2",
+    "@skyux-sdk/pact": "^4.0.0-rc.0",
+    "karma": "^4.0.0"
+  },
+  "dependencies": {
+    "@blackbaud/skyux-logger": "1.1.1",
+    "@pact-foundation/karma-pact": "2.3.1",
+    "@pact-foundation/pact-node": "10.5.0",
+    "glob": "7.1.6",
+    "http-proxy": "1.18.0",
+    "portfinder": "1.0.25",
+    "url": "0.11.0"
+  },
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "jasmine": "3.5.0",
+    "jasmine-spec-reporter": "4.2.1",
+    "karma": "4.4.1",
+    "mock-require": "3.0.3",
+    "nodemon": "2.0.2",
+    "nyc": "15.0.0"
+  }
+}

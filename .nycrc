@@ -1,0 +1,16 @@
+{
+  "all": true,
+  "include": [
+    "config/**/*.js",
+    "lib/**/*.js"
+  ],
+  "exclude": [
+    "**/*.spec.js",
+    "lib/utils/spec-bundle.js"
+  ],
+  "reporter": [
+    "lcov",
+    "text-summary",
+    "html"
+  ]
+}

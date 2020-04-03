@@ -1,3 +1,3 @@
-# 0.0.0 (yyyy-mm-dd)
+# 4.0.0-alpha.0 (2020-04-03)
 
-- Initial release.
+- Initial alpha release.

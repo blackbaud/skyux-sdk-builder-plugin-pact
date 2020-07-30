@@ -1,3 +1,7 @@
+# 4.0.1 (2020-07-30)
+
+- Fixed the `preload` hook to properly modify Builder's `SkyAppAuthTokenModule` for the `skyux pact` command. [#7](https://github.com/blackbaud/skyux-sdk-builder-plugin-pact/pull/7)
+
 # 4.0.0 (2020-06-10)
 
 - Initial major release.

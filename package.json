@@ -21,7 +21,7 @@
     "@pact-foundation/pact-web": "^9.10.0",
     "@pact-foundation/pact": "^9.10.0",
     "@skyux-sdk/builder": "^4.3.0",
-    "@skyux-sdk/pact": "^4.0.0-rc.1",
+    "@skyux-sdk/pact": "^4.0.0-rc.2",
     "karma": "^5.0.4"
   },
   "dependencies": {

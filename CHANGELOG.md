@@ -1,4 +1,4 @@
-4.0.2 (2020-08-26)
+# 4.0.3 (2020-08-26)
 Updated the dependencies to address security vulnerabilities. [#11](https://github.com/blackbaud/skyux-sdk-builder-plugin-pact/pull/11)
 
 # 4.0.2 (2020-08-04)

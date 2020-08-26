@@ -27,19 +27,19 @@
   "dependencies": {
     "@blackbaud/skyux-logger": "1.1.2",
     "@pact-foundation/karma-pact": "2.3.1",
-    "@pact-foundation/pact-node": "10.9.7",
+    "@pact-foundation/pact-node": "10.10.1",
     "glob": "7.1.6",
     "http-proxy": "1.18.1",
-    "portfinder": "1.0.26",
+    "portfinder": "1.0.28",
     "url": "0.11.0"
   },
   "devDependencies": {
     "eslint": "6.8.0",
-    "jasmine": "3.5.0",
+    "jasmine": "3.6.1",
     "jasmine-spec-reporter": "5.0.2",
-    "karma": "5.0.4",
+    "karma": "5.1.1",
     "mock-require": "3.0.3",
-    "nodemon": "2.0.3",
-    "nyc": "15.0.1"
+    "nodemon": "2.0.4",
+    "nyc": "15.1.0"
   }
 }

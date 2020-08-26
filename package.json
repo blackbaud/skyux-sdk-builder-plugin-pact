@@ -1,6 +1,6 @@
 {
   "name": "@skyux-sdk/builder-plugin-pact",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "SKY UX Builder plugin for Pact testing.",
   "main": "index.js",
   "scripts": {

@@ -27,10 +27,10 @@
   "dependencies": {
     "@blackbaud/skyux-logger": "1.1.2",
     "@pact-foundation/karma-pact": "2.3.1",
-    "@pact-foundation/pact-node": "10.9.7",
+    "@pact-foundation/pact-node": "10.10.1",
     "glob": "7.1.6",
     "http-proxy": "1.18.1",
-    "portfinder": "1.0.26",
+    "portfinder": "1.0.28",
     "url": "0.11.0"
   },
   "devDependencies": {
